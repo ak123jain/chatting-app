@@ -2,14 +2,14 @@ import express from 'express';
 import cookieParser from 'cookie-parser';
 import http from 'http';
 import {Server} from 'socket.io';
-
+import cors from 'cors';
 const app = express();
 
 const server = http.createServer(app)
 
 const io = new Server(server, {
     cors: {
-        origin: "http://localhost:3000",
+        origin: process.env.CORS_ORIGIN,
         methods: ["GET", "POST"]
     }
     });
@@ -17,7 +17,7 @@ const io = new Server(server, {
     app.use(cookieParser());
 
     app.use(cors({
-        origin: 'http://localhost:3000',
+        origin: process.env.CORS_ORIGIN,
         credentials: true
     }))
 
@@ -66,6 +66,14 @@ const io = new Server(server, {
 
     
     });
+
+
+    import userRouter from './routes/user.router.js';
+
+    app.use('/users', userRouter);
+    // http://localhost:8000/user/ user routes ka andar jo method ha vo
+
+     
 
     export { app, server, io };
 
