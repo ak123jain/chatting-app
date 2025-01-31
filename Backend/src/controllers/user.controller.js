@@ -306,4 +306,4 @@ const changecurrentpassword = asynchandler(async(req , res)=>{
 
 })
 
-export { registeruser, loggedinuser  , logoutuser , getUserprofile , RefreshAccessToken , updateuserdetails , updateavatar , changecurrentpassword };``
+export { registeruser, loggedinuser  , logoutuser , getUserprofile , RefreshAccessToken , updateuserdetails , updateavatar , changecurrentpassword };
