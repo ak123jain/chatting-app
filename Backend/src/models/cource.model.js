@@ -13,7 +13,7 @@ const courcemodel = new mongoose.Schema(
     courcelevel :{
         type: String,
         required: true,
-        enum : ["Beginner", "Intermediate", "Advanced"]
+        enum : ["Beginner", "Medium", "Advanced"]
     },
     price: {
       type: Number,
