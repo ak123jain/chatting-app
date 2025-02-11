@@ -21,6 +21,7 @@ const createnewcource = asynchandler(async (req, res) => {
     if(!courcethumbnailLocalpath){
         throw new ApiError(400, "Cource thumbnail is required");
     }
+    
 
     const courcethumbnailed = await uploadOnCloudinary(courcethumbnailLocalpath);
 

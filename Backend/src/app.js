@@ -71,11 +71,13 @@ const io = new Server(server, {
     import userRouter from './routes/user.router.js';
     import courceRouter from './routes/cource.router.js';
     import courceprogressRouter from './routes/courceprogress.router.js';
+    import orderRouter from './routes/order.router.js';
 
     app.use('/users', userRouter);
     // http://localhost:8000/user/ user routes ka andar jo method ha vo
 
     app.use('/cources',  courceRouter);
     app.use('/courceprogress', courceprogressRouter);
+    app.use('/orders', orderRouter);    
 
     export { app, server, io };
