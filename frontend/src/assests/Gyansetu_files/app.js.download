@@ -1,0 +1,907 @@
+// Mega Menu
+let courseBtn = jQuery(".site-header .ast-header-html-2");
+let courseBtnMobile = jQuery(".site-header .ast-header-html-3");
+let megaMenu = jQuery("#mega-menu");
+let megaMenuCloseBtn = jQuery("#mega-menu .close-btn");
+
+// Desktop
+courseBtn.on("mouseover", function () {
+	megaMenu.addClass("active");
+});
+
+jQuery("#content").on("mouseover", function () {
+	megaMenu.removeClass("active");
+});
+
+megaMenu.on("mouseover", function () {
+	megaMenu.addClass("active");
+});
+
+megaMenu.on("mouseout", function () {
+	megaMenu.removeClass("active");
+});
+
+// Desktop submenu hover
+jQuery("#mega-menu .cat-filter .item").hover(function () {
+	jQuery(this).addClass("active").siblings().removeClass("active");
+	jQuery("#mega-menu .tab-content").removeClass("active");
+
+	// Get the index of the hovered item
+	var index = jQuery(this).index();
+
+	// Add 'active' class to the corresponding tab-content
+	jQuery("#mega-menu .content-wrapper .tab-content")
+		.eq(index)
+		.addClass("active");
+});
+
+// Mobile
+courseBtnMobile.on("click", function () {
+	megaMenu.addClass("active");
+	// jQuery("body").css("overflow", "hidden");
+});
+
+megaMenuCloseBtn.on("click", function () {
+	megaMenu.removeClass("active");
+	//jQuery("body").css("overflow", "auto");
+});
+
+if (jQuery(window).width() < 769) {
+	jQuery("#mega-menu .courses").removeClass("tab-switcher");
+	jQuery("#mega-menu .cat-filter .tab").removeClass("active");
+
+	jQuery("#mega-menu .cat-filter .item").each(function () {
+		jQuery("#mega-menu .cat-filter .item > a").click(function (e) {
+			e.preventDefault();
+		});
+
+		jQuery(this)
+			.children("a")
+			.on("click", function () {
+				// Close other tabs/content
+				// jQuery(this).parent().siblings('.tab').removeClass('active')
+				jQuery(this).parent().siblings(".tab").removeClass("show");
+				jQuery(this)
+					.parent()
+					.siblings(".tab")
+					.children(".tab-content")
+					.hide();
+
+				// Show the content
+				jQuery(this).parent().toggleClass("active");
+				jQuery(this).siblings(".tab-content").toggle();
+				jQuery(this).parent(".tab").toggleClass("show");
+			});
+	});
+}
+
+//Accordian
+jQuery(document).ready(function () {
+	jQuery(".accordion .title").on("click", function () {
+		jQuery(this).toggleClass("active").siblings().removeClass("active");
+		jQuery(this)
+			.next()
+			.slideToggle("300")
+			.siblings(".accordion .content")
+			.slideUp();
+	});
+});
+
+// Tab switcher
+jQuery(".tab-switcher").each(function () {
+	const $tabSwitcher = jQuery(this);
+	const wrapper = ".wrapper";
+
+	$tabSwitcher.find(".tab").click(function () {
+		const $this = jQuery(this);
+
+		$tabSwitcher.find(wrapper + " .tab").removeClass("active");
+		$this.addClass("active");
+
+		$tabSwitcher.find(wrapper + " .tab-content").removeClass("active");
+		$tabSwitcher
+			.find(wrapper + " .tab-content[data-id='" + $this.data("id") + "']")
+			.addClass("active");
+	});
+});
+
+// Homepage & corporate dropdown for mobile
+jQuery(".cat-dropdown-m .dropdown").on("change", function (e) {
+	jQuery(".courses .tab-content").removeClass("active");
+	jQuery(".skills-main .tab-content").removeClass("active");
+	jQuery(jQuery(e.currentTarget).val()).addClass("active");
+});
+
+// Redirect on change dropdown option
+function redirect(form) {
+	let index = form.catDropdown.selectedIndex;
+	if (form.catDropdown.options[index].value != "0") {
+		location = form.catDropdown.options[index].value;
+	}
+}
+
+// Course Popup Button 1
+jQuery(document).ready(function () {
+	let popup = "#course-popup-1";
+	jQuery(".popup-btn-1").on("click", function () {
+		jQuery(popup + " .title").text(jQuery(this).text());
+		jQuery(popup).fadeToggle(100);
+		jQuery("body").css({ "overflow-y": "hidden" });
+	});
+	jQuery(popup + " .backdrop, " + popup + " .close").on("click", function () {
+		jQuery(popup).fadeToggle(100);
+		jQuery("body").css({ "overflow-y": "auto" });
+	});
+});
+// Course Popup Button 2
+jQuery(document).ready(function () {
+	let popup = "#course-popup-2";
+	jQuery(".popup-btn-2").on("click", function () {
+		jQuery(popup + " .title").text(jQuery(this).text());
+		jQuery(popup).fadeToggle(100);
+		jQuery("body").css({ "overflow-y": "hidden" });
+	});
+	jQuery(popup + " .backdrop, " + popup + " .close").on("click", function () {
+		jQuery(popup).fadeToggle(100);
+		jQuery("body").css({ "overflow-y": "auto" });
+	});
+});
+// Course Popup Button 3
+jQuery(document).ready(function () {
+	let popup = "#course-popup-3";
+	jQuery(".popup-btn-3").on("click", function () {
+		jQuery(popup + " .title").text(jQuery(this).text());
+		jQuery(popup).fadeToggle(100);
+		jQuery("body").css({ "overflow-y": "hidden" });
+	});
+	jQuery(popup + " .backdrop, " + popup + " .close").on("click", function () {
+		jQuery(popup).fadeToggle(100);
+		jQuery("body").css({ "overflow-y": "auto" });
+	});
+});
+
+// Enroll Popup
+jQuery(document).ready(function () {
+	let popup = "#enroll-popup";
+	jQuery(".enroll-btn").on("click", function () {
+		jQuery(popup + " .title").text(jQuery(this).text());
+		jQuery(popup).fadeToggle(100);
+		jQuery("body").css({ "overflow-y": "hidden" });
+	});
+	jQuery(popup + " .backdrop, " + popup + " .close").on("click", function () {
+		jQuery(popup).fadeToggle(100);
+		jQuery("body").css({ "overflow-y": "auto" });
+	});
+});
+
+// Corporate Popup
+jQuery(document).ready(function () {
+	let popup = "#corporate-popup";
+	jQuery(".corporate-btn").on("click", function () {
+		jQuery(popup).fadeToggle(100);
+		jQuery("body").css({ "overflow-y": "hidden" });
+	});
+	jQuery(popup + " .backdrop, " + popup + " .close").on("click", function () {
+		jQuery(popup).fadeToggle(100);
+		jQuery("body").css({ "overflow-y": "auto" });
+	});
+});
+
+// Free Test Popup
+jQuery(document).ready(function () {
+	let popup = "#test-popup";
+	jQuery(".test-btn").on("click", function () {
+		jQuery(popup).fadeToggle(100);
+		jQuery("body").css({ "overflow-y": "hidden" });
+	});
+	jQuery(popup + " .backdrop, " + popup + " .close").on("click", function () {
+		jQuery(popup).fadeToggle(100);
+		jQuery("body").css({ "overflow-y": "auto" });
+	});
+});
+
+// Contact Popup - Course Taxonomy
+jQuery(document).ready(function () {
+	let popup = "#contact-popup";
+	jQuery(".contact-btn").on("click", function () {
+		jQuery(popup).fadeToggle(100);
+		jQuery("body").css({ "overflow-y": "hidden" });
+	});
+	jQuery(popup + " .backdrop, " + popup + " .close").on("click", function () {
+		jQuery(popup).fadeToggle(100);
+		jQuery("body").css({ "overflow-y": "auto" });
+	});
+});
+
+// Trainer Popup
+jQuery(document).ready(function () {
+	let popup = "#trainer-popup";
+	jQuery(".trainer-btn").on("click", function () {
+		jQuery(popup).fadeToggle(100);
+		jQuery("body").css({ "overflow-y": "hidden" });
+	});
+	jQuery(popup + " .backdrop, " + popup + " .close").on("click", function () {
+		jQuery(popup).fadeToggle(100);
+		jQuery("body").css({ "overflow-y": "auto" });
+	});
+});
+
+// Video Popup
+jQuery(".video .video-thumbnail, .video .play-btn").on("click", function () {
+	let videoID = jQuery(this).parent().data("video-id");
+	jQuery("<iframe>")
+		.attr(
+			"src",
+			"https://www.youtube.com/embed/" +
+				videoID +
+				"?rel=0&modestbranding=1&autohide=1&mute=0&showinfo=0&controls=1&autoplay=1"
+		)
+		.attr("allowfullscreen", true)
+		.attr("width", 1080)
+		.attr("height", 608)
+		.appendTo(".player");
+	jQuery("#video-popup").fadeToggle(100);
+	jQuery("body").css({ "overflow-y": "hidden" });
+});
+jQuery("#video-popup .backdrop, #video-popup .close").on("click", function () {
+	jQuery("#video-popup").fadeToggle(100);
+	jQuery(".player iframe").remove();
+	jQuery("body").css({ "overflow-y": "auto" });
+});
+
+// Placement Journey scroll animation
+jQuery(document).ready(function () {
+	let progressBar = jQuery(".progress-bar");
+	let section = jQuery(".placement-journey");
+
+	if (section.length > 0) {
+		jQuery(window).on("scroll", function () {
+			let scrollPos = jQuery(window).scrollTop();
+			let sectionPos = section.offset().top;
+			let sectionHeight = section.outerHeight();
+
+			let offset = 300;
+			if (jQuery(window).width() < 651) {
+				offset = 80;
+			}
+
+			let progress =
+				((scrollPos - sectionPos + offset) / sectionHeight) * 100;
+			progress = Math.min(progress, 98);
+			progressBar.css("height", progress + "%");
+		});
+	}
+});
+
+if (jQuery(window).width() < 769) {
+	// Footer Sticky CTA
+	// When the user scrolls down Xpx from the top of the document, show the button
+	let body = document.body;
+	let html = document.documentElement;
+	let scrollPx = 300;
+
+	let height = Math.max(
+		body.scrollHeight,
+		body.offsetHeight,
+		html.clientHeight,
+		html.scrollHeight,
+		html.offsetHeight
+	);
+
+	height = height - 600; // Minus the footer height
+
+	window.onscroll = function () {
+		scrollFunction();
+	};
+	function scrollFunction() {
+		let stickyCTA = document.querySelector(".contact-sticky");
+
+		if (
+			document.documentElement.scrollTop > scrollPx &&
+			document.documentElement.scrollTop < height
+		) {
+			if (stickyCTA) {
+				stickyCTA.style.display = "flex";
+			}
+		} else {
+			if (stickyCTA) {
+				stickyCTA.style.display = "none";
+			}
+		}
+	}
+}
+
+// Slick Slider
+
+// Home - Our Top Placement
+jQuery(".top-placements .logos").slick({
+	slidesToShow: 7,
+	slidesToScroll: 1,
+	autoplay: !0,
+	infinite: !0,
+	autoplaySpeed: 0,
+	speed: 4000,
+	arrows: !1,
+	cssEase: "linear",
+	responsive: [
+		{
+			breakpoint: 1201,
+			settings: {
+				slidesToShow: 6,
+				slidesToScroll: 1
+			}
+		},
+		{
+			breakpoint: 981,
+			settings: {
+				slidesToShow: 4,
+				slidesToScroll: 1,
+				speed: 3000
+			}
+		},
+		{
+			breakpoint: 581,
+			settings: {
+				slidesToShow: 3,
+				slidesToScroll: 1
+			}
+		}
+	]
+});
+
+// Home - Trending Courses
+jQuery(".gs-courses .grid").slick({
+	dots: true,
+	arrows: true,
+	infinite: false,
+	speed: 400,
+	slidesToShow: 4,
+	slidesToScroll: 1,
+	responsive: [
+		{
+			breakpoint: 1201,
+			settings: {
+				slidesToShow: 3,
+				slidesToScroll: 1
+			}
+		},
+		{
+			breakpoint: 981,
+			settings: {
+				slidesToShow: 2,
+				slidesToScroll: 1
+			}
+		},
+		{
+			breakpoint: 581,
+			settings: {
+				slidesToShow: 1,
+				slidesToScroll: 1,
+				arrows: false,
+				dots: true
+			}
+		}
+	]
+});
+
+// Home - Reviews - Video
+jQuery(
+	".home .reviews .video-reviews, .page-template-corporate-training .reviews .video-reviews"
+).slick({
+	dots: true,
+	arrows: false,
+	infinite: false,
+	speed: 400,
+	slidesToShow: 1,
+	slidesToScroll: 1,
+	responsive: [
+		{
+			breakpoint: 981,
+			settings: {
+				slidesToShow: 2,
+				slidesToScroll: 1,
+				arrows: false,
+				dots: true
+			}
+		},
+		{
+			breakpoint: 601,
+			settings: {
+				slidesToShow: 1,
+				slidesToScroll: 1,
+				arrows: false,
+				dots: true
+			}
+		}
+	]
+});
+
+// Home - Reviews - Testimonials
+jQuery(".testimonials .wrapper").slick({
+	dots: false,
+	arrows: true,
+	infinite: false,
+	speed: 400,
+	slidesToShow: 3,
+	slidesToScroll: 1,
+	responsive: [
+		{
+			breakpoint: 981,
+			settings: {
+				slidesToShow: 2,
+				slidesToScroll: 1,
+				arrows: false,
+				dots: true
+			}
+		},
+		{
+			breakpoint: 601,
+			settings: {
+				slidesToShow: 1,
+				slidesToScroll: 1,
+				arrows: false,
+				dots: true
+			}
+		}
+	]
+});
+
+// Awards
+jQuery(".awards .wrapper").slick({
+	dots: true,
+	arrows: true,
+	infinite: false,
+	speed: 400,
+	slidesToShow: 2,
+	slidesToScroll: 1,
+	responsive: [
+		{
+			breakpoint: 1201,
+			settings: {
+				slidesToShow: 3,
+				slidesToScroll: 1
+			}
+		},
+		{
+			breakpoint: 981,
+			settings: {
+				slidesToShow: 2,
+				slidesToScroll: 1
+			}
+		},
+		{
+			breakpoint: 581,
+			settings: {
+				slidesToShow: 1,
+				slidesToScroll: 1,
+				arrows: false,
+				dots: true
+			}
+		}
+	]
+});
+
+// Single Course - Reviews - Video
+jQuery(".single-course .reviews .video-reviews").slick({
+	dots: true,
+	arrows: false,
+	infinite: false,
+	speed: 400,
+	slidesToShow: 2,
+	slidesToScroll: 2,
+	responsive: [
+		{
+			breakpoint: 981,
+			settings: {
+				slidesToShow: 2,
+				slidesToScroll: 1,
+				arrows: false,
+				dots: true
+			}
+		},
+		{
+			breakpoint: 601,
+			settings: {
+				slidesToShow: 1,
+				slidesToScroll: 1,
+				arrows: false,
+				dots: true
+			}
+		}
+	]
+});
+
+// Course Category - Growth Stories
+jQuery(".growth-stories .wrapper").slick({
+	dots: true,
+	arrows: true,
+	infinite: false,
+	speed: 400,
+	slidesToShow: 2,
+	slidesToScroll: 2,
+	responsive: [
+		{
+			breakpoint: 981,
+			settings: {
+				arrows: false,
+				dots: true
+			}
+		},
+		{
+			breakpoint: 769,
+			settings: {
+				slidesToShow: 1,
+				slidesToScroll: 1,
+				arrows: false,
+				dots: true
+			}
+		},
+		{
+			breakpoint: 601,
+			settings: {
+				slidesToShow: 1,
+				slidesToScroll: 1,
+				arrows: false,
+				dots: true
+			}
+		}
+	]
+});
+
+// Corporate Trainin - logos
+jQuery(".page-template-corporate-training .banner .logo-container").slick({
+	rows: 2,
+	autoplay: true,
+	autoplaySpeed: 0,
+	speed: 3000,
+	dots: false,
+	arrows: false,
+	cssEase: "linear",
+	infinite: true,
+	slidesToShow: 5,
+	slidesToScroll: 1,
+	responsive: [
+		{
+			breakpoint: 1201,
+			settings: {
+				slidesToShow: 4,
+				slidesToScroll: 1
+			}
+		},
+		{
+			breakpoint: 981,
+			settings: {
+				slidesToShow: 3,
+				slidesToScroll: 1
+			}
+		},
+		{
+			breakpoint: 769,
+			settings: {
+				slidesToShow: 2,
+				slidesToScroll: 1,
+				dots: true,
+				arrows: false
+			}
+		}
+	]
+});
+
+// Load more (Search Page)
+let currentSearchPage = jQuery(".search .load-more a").data("page");
+let searchType = jQuery(".search .load-more a").data("type");
+let searchQuery = jQuery(".search .load-more a").data("query");
+jQuery(".search .load-more a").on("click", function (e) {
+	e.preventDefault();
+	jQuery(this).text("Loading ...");
+	currentSearchPage++;
+
+	let nextPage = currentSearchPage + 1;
+
+	jQuery.ajax({
+		type: "POST",
+		url: "/wp-admin/admin-ajax.php",
+		dataType: "json",
+		data: {
+			action: "load_more_search_query",
+			postType: searchType,
+			query: searchQuery,
+			paged: currentSearchPage
+		},
+		success: function (res) {
+			jQuery(".search .posts").append(res.html);
+
+			let currentNextURL = jQuery(".search .load-more a").attr("href");
+			let updateNextURL = currentNextURL.replace(/[0-9]/g, nextPage);
+
+			jQuery(".search .load-more a").attr("href", updateNextURL);
+			jQuery(".search .load-more a").attr("data-page", currentSearchPage);
+
+			jQuery(".search .load-more a").text("Load More");
+
+			if (currentSearchPage >= res.max) {
+				jQuery(".search .load-more").remove();
+			}
+		}
+	});
+});
+
+// Drop us a query
+let dropQuery = jQuery("#drop_query");
+let queryHead = jQuery("#drop_query .query_head");
+let queryBody = jQuery("#drop_query .query_body");
+let arrowIcon = jQuery("#drop_query .query_head svg");
+let footerCta = jQuery(".footer-sticky-cta .enquiry");
+
+if (jQuery(window).width() > 769) {
+	if (dropQuery) {
+		setTimeout(function () {
+			dropQuery.slideToggle();
+		}, 10000); // 10 seconds
+		queryHead.on("click", function () {
+			queryBody.slideToggle(200, function () {
+				queryHead.toggleClass("active");
+				queryBody.toggleClass("active").removeClass("active");
+			});
+		});
+	}
+} else {
+	// Mobile
+	footerCta.on("click", function () {
+		dropQuery.slideToggle();
+	});
+	queryHead.on("click", function () {
+		dropQuery.slideToggle();
+	});
+}
+
+jQuery(".view-toggle .more").on("click", function () {
+	var $this = jQuery(this);
+	var btnText = $this.find(".text");
+	$this.toggleClass("clicked");
+
+	// Find the corresponding accordion title
+	var accordionTitle = jQuery(this)
+		.closest(".view-toggle")
+		.find(".accordion .title");
+
+	// Toggle the 'show' class only for the corresponding accordion title
+	accordionTitle.toggleClass("show");
+
+	// Update the button text
+	if (btnText.text() === "View more") {
+		btnText.text("View less");
+	} else {
+		btnText.text("View more");
+	}
+});
+
+// Mega Curriculum toggle
+jQuery(document).ready(function () {
+	jQuery(".card-footer").each(function () {
+		jQuery(this)
+			.find(".footer-head")
+			.click(function () {
+				let $cardFooter = jQuery(this).closest(".card-footer");
+				let $footerContent = $cardFooter.find(".footer-content");
+
+				// Close all other open footer contents
+				jQuery(".card-footer")
+					.not($cardFooter)
+					.find(".footer-content")
+					.slideUp();
+				jQuery(this).toggleClass("active");
+
+				// Toggle the clicked footer content
+				$footerContent.slideToggle();
+			});
+	});
+});
+
+// Course Nav Highlight and auto scroll
+let CourseNavLinks = jQuery(".nav-links li");
+
+if (CourseNavLinks.length) {
+	jQuery(".single-course a").on("click", function () {
+		let scrollAnchor = jQuery(this).attr("data-scroll");
+		let scrollPoint =
+			jQuery('[data-anchor="' + scrollAnchor + '"]').offset().top - 60;
+
+		// 			jQuery('html, body').scrollTop(scrollPoint);
+		// 			return false;
+
+		jQuery("html, body").animate(
+			{
+				scrollTop: scrollPoint
+			},
+			5
+		);
+		return true;
+	});
+
+	jQuery(window).on("scroll", function () {
+		let windscroll = jQuery(window).scrollTop();
+		if (windscroll >= 0) {
+			jQuery(".scroll-section").each(function (i) {
+				if (jQuery(this).position().top <= windscroll - -80) {
+					jQuery(".nav-links li.active").removeClass("active");
+					jQuery(".nav-links li").eq(i).addClass("active");
+				}
+			});
+		} else {
+			jQuery(".nav-links li.active").removeClass("active");
+			jQuery(".nav-links li:first").addClass("active");
+		}
+
+		//scroll active element position
+		let myScrollPos =
+			jQuery(".nav-links li.active").offset().left +
+			jQuery(".nav-links li.active").outerWidth(true) / 2 +
+			jQuery(".nav-links .container").scrollLeft() -
+			jQuery(".nav-links .container").width() / 2;
+
+		jQuery(".nav-links .container").scrollLeft(myScrollPos);
+	});
+}
+
+// Footer Cta Desktop
+let footerCtaDesktop = document.querySelector(".footer-cta-bar");
+
+window.onscroll = function () {
+	if (document.documentElement.scrollTop > 500) {
+		if (footerCtaDesktop) {
+			footerCtaDesktop.style.display = "flex";
+		}
+	} else {
+		if (footerCtaDesktop) {
+			footerCtaDesktop.style.display = "none";
+		}
+	}
+};
+
+// View more Cards
+jQuery(".card-limit").each(function () {
+	const $this = jQuery(this);
+	let totalCards = $this.children().length;
+	let limit = $this.data("limit");
+
+	if (jQuery(window).width() < 651) {
+		if ($this.data("limit-mobile")) {
+			limit = $this.data("limit-mobile");
+		} else {
+			limit = 4;
+		}
+	}
+
+	if (totalCards > limit) {
+		jQuery(this).after(`<div class="btn-more">
+			  <button class="load-more">View more</button>
+		 </div>`);
+	}
+
+	const $loadMoreBtn = $this.siblings(".btn-more").find(".load-more");
+	$this.find(".card").slice(0, limit).show();
+
+	$loadMoreBtn.on("click", function (e) {
+		e.preventDefault();
+		// Detect current state
+		if (jQuery(this).text() === "View more") {
+			$this.find(".card").slideDown("fast");
+			jQuery(this).text("View less");
+		} else {
+			$this.find(".card").slice(limit).slideUp("fast");
+			jQuery(this).text("View more");
+		}
+	});
+});
+
+// Read More content
+jQuery(document).ready(function () {
+	jQuery(".desc.content-limit").each(function () {
+		let wordCount = jQuery(this).data("limit");
+		if (jQuery(window).width() < 651) {
+			wordCount = 16;
+		} else {
+			if (wordCount) {
+				wordCount = wordCount;
+			} else {
+				wordCount = 40;
+			}
+		}
+
+		let content = jQuery(this).html();
+		let words = content
+			.trim()
+			.replace(/<\/?[^>]+(>|$)/g, " ")
+			.split(/\s+/);
+
+		if (words.length > wordCount) {
+			let truncatedWords = words.slice(0, wordCount);
+			let truncatedContent =
+				truncatedWords.join(" ") +
+				"... <a href='#' class='read-more'>Read more ↓</a>";
+			jQuery(this).html(truncatedContent);
+
+			jQuery(this).on("click", ".read-more, .read-less", function (e) {
+				e.preventDefault();
+				if (jQuery(this).hasClass("read-more")) {
+					jQuery(this)
+						.parent()
+						.html(
+							content + " <a href='#' class='read-less'>Read less ↑</a>"
+						);
+				} else {
+					jQuery(this).parent().html(truncatedContent);
+				}
+			});
+		}
+	});
+
+	// For Mobile only
+	if (jQuery(window).width() < 651) {
+		jQuery(".desc.content-limit-m").each(function () {
+			let wordCount = 16;
+			let content = jQuery(this).html();
+			let words = content
+				.trim()
+				.replace(/<\/?[^>]+(>|$)/g, " ")
+				.split(/\s+/);
+
+			// if (words.length > wordCount) {
+			// 	let truncatedWords = words.slice(0, wordCount);
+			// 	let truncatedContent =
+			// 		truncatedWords.join(" ") +
+			// 		"... <a href='#' class='read-more'>Read more</a>";
+			// 	jQuery(this).html(truncatedContent);
+
+			// 	jQuery(this)
+			// 		.children(".read-more")
+			// 		.click(function (e) {
+			// 			e.preventDefault();
+			// 			jQuery(this).parent().html(content);
+			// 		});
+			// }
+			if (words.length > wordCount) {
+				let truncatedWords = words.slice(0, wordCount);
+				let truncatedContent =
+					truncatedWords.join(" ") +
+					"... <a href='#' class='read-more'>Read more ↓</a>";
+				jQuery(this).html(truncatedContent);
+
+				jQuery(this).on("click", ".read-more, .read-less", function (e) {
+					e.preventDefault();
+					if (jQuery(this).hasClass("read-more")) {
+						jQuery(this)
+							.parent()
+							.html(
+								content +
+									" <a href='#' class='read-less'>Read less ↑</a>"
+							);
+					} else {
+						jQuery(this).parent().html(truncatedContent);
+					}
+				});
+			}
+		});
+	}
+});
+
+// Script Footer
+// Hide slick slider dots if is equal to 1
+jQuery(".slick-dots").each(function () {
+	if (jQuery(this).children("li").length == 1) {
+		jQuery(this).hide();
+	}
+});
+
+jQuery(".slick-list").each(function () {
+	if (
+		jQuery(this).children(".slick-track").children(".slick-slide").length == 1
+	) {
+		jQuery(this).addClass("pd-right-0");
+	}
+});
+
+jQuery(".logos").fadeIn();
+
+console.log("App is running!");

@@ -47,11 +47,11 @@ const searchcource = asynchandler(async(req , res)=>{
 
     const {query , sortBy ,sortType , categories} = req.query;
 
-    const filter = { isPublished : true };  
+    const filter = {  };  
 
     if(query){
         filter.$or = [
-            {courseTitle : { $regex : query, $options : "i" }},
+            { courcetitle : { $regex : query, $options : "i" }},
             {courseDescription : { $regex : query, $options : "i" }},
             {courseLevel : { $regex : query, $options : "i" }},
         ]

@@ -32,8 +32,14 @@ const registeruser = asynchandler(async (req , res)=>{
         throw new ApiError(400, "All fields are required");
     }
 
+    console.log("req.files", req.body);
+    
+
     const fullnamelowercase = fullname.toLowerCase();
     const usernameLowercase = username.toLowerCase();
+
+    console.log("fullnamelowercase", fullnamelowercase);
+    
 
     // check if user already exist
     const existinguser = await User.findOne({
