@@ -154,9 +154,11 @@ const Navbar = () => {
       {/* Navigation Links */}
       <div className="flex items-center space-x-6">
         {!isCourseListPage && (
-          <button className="px-4 py-2 bg-[#4071ba] text-white rounded-lg hover:bg-[#4071ba]">
+            <Link to="/educator/educator" >  
+            <button className="px-4 py-2 bg-[#4071ba] text-white rounded-lg hover:bg-[#4071ba]">
             Become Educator
           </button>
+            </Link>
         )}
 
         <Link to="/my-enrollment" className="text-gray-700 hover:text-blue-600">

@@ -10,7 +10,7 @@ router.route("/searchcource").get(searchcource);
 router.route("/publishedcource").get(getPublishedcource);
 router.route("/creatorcource").get(verifyjwt , getCreatorcource);
 router.route("/:courceId").patch(verifyjwt , editcource)
-router.route("/:courceId").get(verifyjwt, getcourceById)
+router.route("/:courceId").get( verifyjwt, getcourceById)
 router.route("/:courceId/lecture").post(upload.single("lecturethubnail"), verifyjwt , createLecture)
 router.route("/:courceId/lecture").get(verifyjwt , getcourcelecture)
 router.route("/:courceId/lecture/:LectureId").patch(verifyjwt , editLecture)

@@ -15,6 +15,7 @@ import Footer from "./components/student/Footer"
 import CourceExplain from "./pages/student/CourceExplain"
 import SignUp from "./pages/student/SignUp"
 import Login from "./pages/student/Login"
+ 
 
 const App = () => {
 // navbar is saperate for educator route
@@ -36,6 +37,8 @@ const App = () => {
         <Route path="/login" element={<Login />}></Route>
 
         <Route path='/educator' element={<Educator />}>
+               
+
                <Route path="educator" element={<Dashboard />} />
                <Route path="add-cource" element={<AddCource />} />
                <Route path="student-enrolled" element={<EnrolledStudent />} />
@@ -51,3 +54,6 @@ const App = () => {
 }
 
 export default App
+
+
+ 

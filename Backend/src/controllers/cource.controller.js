@@ -143,6 +143,9 @@ const getcourceById = asynchandler(async (req , res)=>{
 
     const cource = await Cource.findById(courseId).populate({ path: "creator", select: "name photoUrl" });
 
+    console.log("courceeeee", cource);
+    
+
     if(!cource){
         throw new ApiError(404, "No cource found");
     }
