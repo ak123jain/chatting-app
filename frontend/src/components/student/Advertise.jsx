@@ -19,7 +19,7 @@
 
 
 import React from 'react';
-import Book from '../../assests/book.png';
+import Book from '../../assests/Book.png';
 
 const Advertise = () => {
   return (
