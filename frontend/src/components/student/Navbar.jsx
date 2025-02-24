@@ -90,7 +90,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../../assests/logo.jpg"; // Ensure correct path
-import akash from "../../assests/akash.jpg";
+import akash from "../../assests/Akash.jpg";
 import { Search } from "lucide-react"; // Import search icon
 import axios from "axios";
 
