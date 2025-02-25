@@ -264,7 +264,7 @@ const updateavatar = asynchandler(async(req , res)=>{
     const avatar = await uploadOnCloudinary(avatarlocalpath);
 
     if (!avatar) {
-        throw new ApiError(500, "Something went wrong while uploading the avatar");
+        throw new apiError(500, "Something went wrong while uploading the avatar");
     }
 
     const user = await User.findByIdAndUpdate(
@@ -287,7 +287,7 @@ const changecurrentpassword = asynchandler(async(req , res)=>{
     const {password , newpassword } = req.body;
 
     if (!password || !newpassword) {
-        throw new ApiError(400, "All fields are required");
+        throw new apiError(400, "All fields are required");
     }
 
     const userId = req.user._id;
@@ -297,7 +297,7 @@ const changecurrentpassword = asynchandler(async(req , res)=>{
     const ispasswordcorrect  = await user.isPasswordCorrect(password);
 
     if (!ispasswordcorrect) {
-        throw new ApiError(401, "Invalid password");
+        throw new apiError(401, "Invalid password");
     }
 
     user.password = newpassword;
