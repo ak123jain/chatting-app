@@ -1,6 +1,6 @@
 import { asynchandler } from "../utils/asynchandler.js";
 import { User } from "../models/user.model.js";
-import { ApiError } from "../utils/apiError.js";
+import { apiError } from "../utils/apiError.js";
 import jwt from "jsonwebtoken";
 import { ApiResponse } from "../utils/ApiResponse.js"; 
 import { uploadOnCloudinary } from "../utils/cloudinary.js"; 
@@ -13,20 +13,20 @@ const createnewcource = asynchandler(async (req, res) => {
    const { courcetitle, courcedescription, courcelevel, price,  creator } = req.body;
 
    if(!courcetitle || ! courcedescription || ! courcelevel || ! price  || ! creator){
-       throw new ApiError(400, "All fields are required");
+       throw new apiError(400, "All fields are required");
    }
 
    const courcethumbnailLocalpath = req.file?.path;
 
     if(!courcethumbnailLocalpath){
-        throw new ApiError(400, "Cource thumbnail is required");
+        throw new apiError(400, "Cource thumbnail is required");
     }
     
 
     const courcethumbnailed = await uploadOnCloudinary(courcethumbnailLocalpath);
 
     if(!courcethumbnailed){
-        throw new ApiError(500, "Something went wrong while uploading the cource thumbnail");
+        throw new apiError(500, "Something went wrong while uploading the cource thumbnail");
     }
 
    const create = await Cource.create({
@@ -81,7 +81,7 @@ const getPublishedcource = asynchandler(async(req , res)=>{
     const cource = await Cource.find({isPublished : true}).populate({ path: "creator", select: "name photoUrl" });
 
     if(!cource){
-        throw new ApiError(404, "No cource found");
+        throw new apiError(404, "No cource found");
     }
 
     return res.status(200).json(new ApiResponse(200, cource, "Cource found successfully"));
@@ -97,7 +97,7 @@ const getCreatorcource = asynchandler(async(req , res)=>{
    const cource = await Cource.find({creator : userId});
 
     if(!cource){
-         throw new ApiError(404, "No cource found");
+         throw new apiError(404, "No cource found");
     }
 
     return res.status(200).json(new ApiResponse(200, cource, "Cource found successfully"));
@@ -123,7 +123,7 @@ const editcource = asynchandler(async (req , res)=>{
     console.log("cource" , cource);
     
     if (!cource) {
-        throw new ApiError(404 , "Course not found or you don't have permission to edit it")
+        throw new apiError(404 , "Course not found or you don't have permission to edit it")
     }
 
     const updatedata = {courcetitle , courcedescription , courcelevel , price , creator}
@@ -147,7 +147,7 @@ const getcourceById = asynchandler(async (req , res)=>{
     
 
     if(!cource){
-        throw new ApiError(404, "No cource found");
+        throw new apiError(404, "No cource found");
     }
 
     return res.status(200).json(new ApiResponse(200, cource, "Cource found successfully"));
@@ -166,7 +166,7 @@ const createLecture = asynchandler(async (req , res)=>{
     const course = await Cource.findById(courceId);
 
     if(!course){
-        throw new ApiError(404, "No cource found");
+        throw new apiError(404, "No cource found");
     }
 
     const lecturehumbnail = req.file?.path;
@@ -199,7 +199,7 @@ const getcourcelecture = asynchandler(async (req , res)=>{
     const cource  = await Cource.findById(courceId).populate("lecture"); 
 
     if(!cource){
-        throw new ApiError(404, "No cource found");
+        throw new apiError(404, "No cource found");
     }
 
     //  const lectures = cource.lecture || "No lectures found akash";
@@ -250,7 +250,7 @@ const removelecture = asynchandler(async (req , res)=>{
     
 
     if(!lecturee){
-        throw new ApiError(404, "No lecture found");
+        throw new apiError(404, "No lecture found");
     }
 
      // Remove the lecture reference from the associated course
@@ -278,7 +278,7 @@ const isPublished = asynchandler(async (req , res)=>{
     const cource = await Cource.findById(courceId);
 
     if(!cource){
-        throw new ApiError(404, "No cource found");
+        throw new apiError(404, "No cource found");
     }
 
     cource.isPublished = publish === "true";

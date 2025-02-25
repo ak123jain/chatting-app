@@ -1,6 +1,6 @@
 import { asynchandler } from "../utils/asynchandler.js";
 import { User } from "../models/user.model.js";
-import { ApiError } from "../utils/apiError.js";
+import { apiError } from "../utils/apiError.js";
 import jwt from "jsonwebtoken";
 import { ApiResponse } from "../utils/ApiResponse.js"; 
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
@@ -47,19 +47,19 @@ const registeruser = asynchandler(async (req , res)=>{
     })
 
     if (existinguser) {
-        throw new ApiError(400, "User already exist");
+        throw new apiError(400, "User already exist");
     }
 
     const avatarLocalPath = req.files?.avatar[0]?.path;
 
     if (!avatarLocalPath) {
-        throw new ApiError(400, "Avatar file is required");
+        throw new apiError(400, "Avatar file is required");
     }
 
     const avatar = await uploadOnCloudinary(avatarLocalPath);
 
     if (!avatar) {
-        throw new ApiError(500, "Something went wrong while uploading the avatar");
+        throw new apiError(500, "Something went wrong while uploading the avatar");
     }
 
 
@@ -74,7 +74,7 @@ const registeruser = asynchandler(async (req , res)=>{
     const createdUser = await User.findById(user._id).select("-password -refreshToken");
 
     if (!createdUser) {
-        throw new ApiError(500, "Something went wrong while registering the user");
+        throw new apiError(500, "Something went wrong while registering the user");
     }
 
 
@@ -92,20 +92,20 @@ const loggedinuser = asynchandler(async (req, res) => {
     console.log("ritu ", req.body.username);
 
     if (!username || !password) {
-        throw new ApiError(404, "username or password is invalid");
+        throw new apiError(404, "username or password is invalid");
       }
     
 
     const user = await User.findOne({ $or: [{ username }, { email }] });
 
     if (!user) {    
-        throw new ApiError(404, "User not found");
+        throw new apiError(404, "User not found");
     }
 
     const ispasswordcorrect = await user.isPasswordCorrect(password);
 
     if (!ispasswordcorrect) {
-        throw new ApiError(401, "Invalid user credentials")
+        throw new apiError(401, "Invalid user credentials")
         }
 
         const {accessToken , refreshToken} = await generatetoken(user._id);
@@ -187,7 +187,7 @@ const RefreshAccessToken = asynchandler(async (req , res)=>{
     const incomingRefreshToken = req.cookies.refreshToken || req.body.refreshToken;
 
     if (!incomingRefreshToken) {
-        throw new ApiError(400, "Refresh token is required");
+        throw new apiError(400, "Refresh token is required");
     }
 
     const decoded = jwt.verify(incomingRefreshToken, process.env.REFRESH_TOKEN_SECRET);
@@ -198,7 +198,7 @@ const RefreshAccessToken = asynchandler(async (req , res)=>{
     const user = await User.findById(decoded.id);
 
     if (!user) {
-        throw new ApiError(404, "User not found");
+        throw new apiError(404, "User not found");
     }
 
     console.log("user", user);
@@ -206,7 +206,7 @@ const RefreshAccessToken = asynchandler(async (req , res)=>{
     console.log("refresh token", user.refreshToken);
 
     if (user?.refreshToken !== incomingRefreshToken) {
-        throw new ApiError(400, "Invalid refresh token");
+        throw new apiError(400, "Invalid refresh token");
     }
     
 
@@ -258,7 +258,7 @@ const updateavatar = asynchandler(async(req , res)=>{
     const avatarlocalpath = req.files?.avatar[0]?.path;
 
     if (!avatarlocalpath) {
-        throw new ApiError(400, "Avatar file is required");
+        throw new apiError(400, "Avatar file is required");
     }
 
     const avatar = await uploadOnCloudinary(avatarlocalpath);
