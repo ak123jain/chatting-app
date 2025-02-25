@@ -1,6 +1,6 @@
 import { asynchandler } from "../utils/asynchandler.js";
 import { User } from "../models/user.model.js";
-import { apiError } from "../utils/apiError.js";
+import { ApiError } from "../utils/ApiError.js";
 import jwt from "jsonwebtoken";
 import { ApiResponse } from "../utils/ApiResponse.js"; 
 import { uploadOnCloudinary } from "../utils/cloudinary.js"; 
@@ -27,7 +27,7 @@ const razorpay = new Razorpay({
         
 
         if(!amount || !courceId || !userId){
-            throw new apiError(400, "All fields are required");
+            throw new ApiError(400, "All fields are required");
         }
 
         const options = {
@@ -75,7 +75,7 @@ const razorpay = new Razorpay({
           .digest("hex")
 
           if (generated_signature !== razorpay_signature) {
-            throw new apiError(400, "Invalid signature");
+            throw new ApiError(400, "Invalid signature");
           }
 
           // payment is verified

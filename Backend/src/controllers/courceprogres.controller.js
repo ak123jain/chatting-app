@@ -1,6 +1,6 @@
 import { asynchandler } from "../utils/asynchandler.js";
 import { User } from "../models/user.model.js";
-import { apiError } from "../utils/apiError.js";
+import { ApiError } from "../utils/ApiError.js";
 import jwt from "jsonwebtoken";
 import { ApiResponse } from "../utils/ApiResponse.js"; 
 import { uploadOnCloudinary } from "../utils/cloudinary.js"; 
@@ -148,7 +148,7 @@ export const marksascompleted = await asynchandler(async (req , res)=>{
     })
 
     if(!courceprogress){
-        throw new apiError(404, "No cource progress found");
+        throw new ApiError(404, "No cource progress found");
     }
 
     courceprogress.lectureprogress.map((lecture)=>{
@@ -188,7 +188,7 @@ export const Incompletemarks = await asynchandler(async (req , res)=>{
     })
 
     if(!courceprogress){
-        throw new apiError(404, "No cource progress found");
+        throw new ApiError(404, "No cource progress found");
     }
 
     courceprogress.lectureprogress.map((lecture)=>{

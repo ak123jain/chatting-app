@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import {asynchandler} from '../utils/asynchandler.js';
 import {User} from '../models/user.model.js';
-import {ApiError} from '../utils/apiError.js';
+import {ApiError} from '../utils/ApiError.js';
 
 export const verifyjwt = asynchandler(async(req, _ , next)=>{
 
@@ -11,7 +11,7 @@ export const verifyjwt = asynchandler(async(req, _ , next)=>{
      console.log("akash token is required " , token);
          
          if (!token) {
-             throw new ApiError(200, "token is required")
+             throw new apiError(200, "token is required")
          }
  
          const decodedtoken = jwt.verify(token , process.env.ACCESS_TOKEN_SECRET);
