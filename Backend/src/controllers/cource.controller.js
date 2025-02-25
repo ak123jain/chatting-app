@@ -154,6 +154,22 @@ const getcourceById = asynchandler(async (req , res)=>{
 
 })
 
+const getcource = asynchandler(async(req, res)=>{
+
+
+    console.log("🚀 getcource route is being hit!");
+    console.log("Request Params:", req.params);
+    console.log("Request Query:", req.query);
+
+    const cource = await Cource.find({});
+
+    return res.status(200).json(new ApiResponse(
+        200,
+           "Courses fetched successfully",
+          cource
+));
+})
+
 const createLecture = asynchandler(async (req , res)=>{
 
     const {courceId} = req.params;
@@ -294,4 +310,4 @@ const isPublished = asynchandler(async (req , res)=>{
 
 })
 
-export { createnewcource , searchcource  , getPublishedcource , getCreatorcource , editcource , getcourceById  , createLecture , getcourcelecture , editLecture , removelecture , isPublished};
+export { createnewcource , searchcource  , getPublishedcource , getCreatorcource , editcource , getcourceById  , createLecture , getcourcelecture , editLecture , removelecture , isPublished ,   getcource };

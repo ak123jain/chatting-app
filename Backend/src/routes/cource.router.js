@@ -1,5 +1,5 @@
 import {Router} from "express";
-import { createnewcource , searchcource , getPublishedcource , getCreatorcource , editcource , getcourceById , createLecture , getcourcelecture , editLecture , removelecture , isPublished} from "../controllers/cource.controller.js";
+import { createnewcource , searchcource , getPublishedcource , getCreatorcource , editcource , getcourceById , createLecture , getcourcelecture , editLecture , removelecture , isPublished ,  getcource} from "../controllers/cource.controller.js";
 import { verifyjwt } from "../middlewares/auth.middleware.js";
 import { upload } from "../middlewares/multer.middleware.js";
 
@@ -10,7 +10,9 @@ router.route("/searchcource").get(searchcource);
 router.route("/publishedcource").get(getPublishedcource);
 router.route("/creatorcource").get(verifyjwt , getCreatorcource);
 router.route("/:courceId").patch(verifyjwt , editcource)
-router.route("/:courceId").get( verifyjwt, getcourceById)
+router.route("/containcource").get(getcource)
+router.route("/:courceId").get(  verifyjwt, getcourceById)
+ 
 router.route("/:courceId/lecture").post(upload.single("lecturethubnail"), verifyjwt , createLecture)
 router.route("/:courceId/lecture").get(verifyjwt , getcourcelecture)
 router.route("/:courceId/lecture/:LectureId").patch(verifyjwt , editLecture)
