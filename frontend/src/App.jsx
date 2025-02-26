@@ -15,6 +15,8 @@ import Footer from "./components/student/Footer"
 import CourceExplain from "./pages/student/CourceExplain"
 import SignUp from "./pages/student/SignUp"
 import Login from "./pages/student/Login"
+import ViewCource from "./pages/Educator/ViewCource"
+import Logout from "./pages/Educator/Logout"
  
 
 const App = () => {
@@ -43,6 +45,8 @@ const App = () => {
                <Route path="add-cource" element={<AddCource />} />
                <Route path="student-enrolled" element={<EnrolledStudent />} />
                <Route path="my-cource" element={<MyCources />} />
+               <Route path="view-cource" element={<ViewCource />} />
+               <Route path="Logout" element={<Logout />} />
                 
         </Route>
       </Routes>
@@ -54,6 +58,3 @@ const App = () => {
 }
 
 export default App
-
-
- 

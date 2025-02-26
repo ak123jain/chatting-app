@@ -60,6 +60,7 @@
 
 import axios from "axios";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const AddCource = () => {
   const [courcelevel, setcourcelevel] = useState("");
@@ -149,9 +150,11 @@ const AddCource = () => {
         />
         <input type="file" onChange={handlecourcethumbnail} className="w-full p-2 border border-gray-300 rounded" />
 
-        <button type="submit" className="w-full p-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+         <Link to={"/educator/view-cource"}>
+         <button type="submit" className="w-full p-2 bg-blue-500 text-white rounded hover:bg-blue-600">
           Add Cource
         </button>
+         </Link>
       </form>
     </div>
   );

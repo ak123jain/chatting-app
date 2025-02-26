@@ -13,7 +13,7 @@ router.route("/register").post(
 )
 
 router.route("/loggedin").post(loggedinuser);
-router.route("/profile").get(verifyjwt, getUserprofile);
+router.route("/profile").get( verifyjwt, getUserprofile);
 router.route("/logout").post(verifyjwt, logoutuser);
 router.route("/refresh").post(RefreshAccessToken);
 router.route("/update").patch(verifyjwt, updateuserdetails);
