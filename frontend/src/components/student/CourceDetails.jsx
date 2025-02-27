@@ -72,7 +72,7 @@ const CourceDetails = () => {
   useEffect(() => {
     const fetched = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/cources/${id}`, {
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/cources/${id}`, {
           withCredentials: true,
         });
         console.log("Response:", response.data.data);

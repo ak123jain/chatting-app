@@ -116,7 +116,7 @@ const BuyNow = () => {
     setloading(true);
     try {
       const { data } = await axios.post(
-        `http://localhost:8000/orders/createorder/${courceId}`,
+        `${import.meta.env.VITE_API_URL}/orders/createorder/${courceId}`,
         { amount: 1000 },
         { withCredentials: true }
       );
@@ -145,7 +145,7 @@ const BuyNow = () => {
 
           try {
             await axios.post(
-              'http://localhost:8000/payment/verify',
+              '${import.meta.env.VITE_API_URL}/payment/verify',
               {
                 razorpay_payment_id: response.razorpay_payment_id,
                 razorpay_order_id: response.razorpay_order_id,

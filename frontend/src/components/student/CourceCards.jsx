@@ -100,7 +100,7 @@ const CourceCards = () => {
 
   useEffect(() => {
     // Fetch data from the API
-    axios.get('http://localhost:8000/cources/publishedcource')
+    axios.get(`${import.meta.env.VITE_API_URL}/cources/publishedcource`)
       .then((response) => {
         console.log('API Response:', response.data); // Log the response data to check its structure
         

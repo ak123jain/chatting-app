@@ -104,7 +104,7 @@ const Navbar = () => {
   const fetchCources = useCallback(async () => {
     if (!searchterm.trim()) return; // Prevent empty requests
     try {
-      const response = await axios.get(`http://localhost:8000/cources/searchcource?query=${searchterm}`);
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/cources/searchcource?query=${searchterm}`);
       setCources(response.data.data);
       console.log("cource data", response.data.data);
     } catch (error) {

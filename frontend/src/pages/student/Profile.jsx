@@ -59,7 +59,7 @@ const Profile = () => {
   useEffect(() => {
     const fetchedUser = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/users/profile", {
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/users/profile`, {
           withCredentials: true,
         });
         console.log("User profile fetched successfully:", response.data.data);
