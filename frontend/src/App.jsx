@@ -17,6 +17,7 @@ import SignUp from "./pages/student/SignUp"
 import Login from "./pages/student/Login"
 import ViewCource from "./pages/Educator/ViewCource"
 import Logout from "./pages/Educator/Logout"
+import BuyNow from "./pages/student/BuyNow"
  
 
 const App = () => {
@@ -37,10 +38,10 @@ const App = () => {
         <Route path="/profile" element={<Profile/>}></Route>
         <Route path="/signup" element={<SignUp />}></Route>
         <Route path="/login" element={<Login />}></Route>
+        <Route path="/Buynow/:courceId" element={<BuyNow />}></Route>
 
         <Route path='/educator' element={<Educator />}>
                
-
                <Route path="educator" element={<Dashboard />} />
                <Route path="add-cource" element={<AddCource />} />
                <Route path="student-enrolled" element={<EnrolledStudent />} />

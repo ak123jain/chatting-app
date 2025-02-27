@@ -60,6 +60,7 @@ import { useParams } from "react-router-dom";
 import google from "../../assests/google.jpg";
 import jd from "../../assests/jd.jpg";
 import microsoft from "../../assests/microsoft.jpg";
+import  {Link} from "react-router-dom";
 
 const CourceDetails = () => {
   const { id } = useParams();
@@ -85,6 +86,7 @@ const CourceDetails = () => {
     };
 
     fetched();
+    
   }, [id]);
 
   return (
@@ -107,9 +109,11 @@ const CourceDetails = () => {
             <p className="text-2xl font-bold text-green-600 mt-4">₹{data?.price}</p>
 
             {/* Enroll Button */}
+            <Link to={`/Buynow/${data._id}`} >
             <button className="mt-5 bg-blue-600 text-white py-3 px-6 rounded-lg shadow-md hover:bg-blue-700">
               Enroll Me
             </button>
+            </Link>
 
             {/* Features Section */}
             <div className="grid grid-cols-2 gap-6 mt-8">
