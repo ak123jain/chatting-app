@@ -90,7 +90,7 @@ const AddCource = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:8000/cources/newcource", formdata, {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/cources/newcource`, formdata, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

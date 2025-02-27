@@ -64,7 +64,7 @@ const ViewCource = () => {
   useEffect(() => {
     const fetchedcource = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/cources/containcource");
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/cources/containcource`);
         console.log("Cource added successfully:", response.data.message);
         if (Array.isArray(response.data.message)) {
           setdata(response.data.message);
