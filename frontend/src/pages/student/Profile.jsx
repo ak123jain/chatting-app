@@ -62,7 +62,7 @@ const Profile = () => {
 
         
         const token = localStorage.getItem("accessToken"); // Assuming you store it in localStorage
-
+        console.log("token find 😊😊😊",token)
         const response = await axios.get(`${import.meta.env.VITE_API_URL}/users/profile`, {
           headers: {
               Authorization: `Bearer ${token}`,
