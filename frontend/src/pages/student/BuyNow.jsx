@@ -118,7 +118,7 @@ const BuyNow = () => {
       const token = localStorage.getItem("accessToken")
       const { data } = await axios.post(
         `${import.meta.env.VITE_API_URL}/orders/createorder/${courceId}`,
-        { amount: 1000 },
+        { amount: 1 },
          {
           headers: {
             Authorization: `Bearer ${token}`,
