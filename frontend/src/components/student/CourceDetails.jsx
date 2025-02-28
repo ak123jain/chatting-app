@@ -72,8 +72,11 @@ const CourceDetails = () => {
   useEffect(() => {
     const fetched = async () => {
       try {
+        const token = localStorage.getItem("accessToken"); 
         const response = await axios.get(`${import.meta.env.VITE_API_URL}/cources/${id}`, {
-          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${token}`,
+        },
         });
         console.log("Response:", response.data.data);
         setData(response.data.data);
