@@ -115,10 +115,15 @@ const BuyNow = () => {
   const handlepayment = async () => {
     setloading(true);
     try {
+      const token = localStorage.getItem("accessToken")
       const { data } = await axios.post(
         `${import.meta.env.VITE_API_URL}/orders/createorder/${courceId}`,
         { amount: 1000 },
-        { withCredentials: true }
+         {
+          headers: {
+            Authorization: `Bearer ${token}`,
+        },
+         }
       );
 
       if (!data?.data) {
@@ -153,7 +158,11 @@ const BuyNow = () => {
                 userId: 'USER_ID', // Replace with actual user ID
                 courceId,
               },
-              { withCredentials: true }
+              {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+              },
+              }
             );
           } catch (error) {
             console.error('Payment verification failed', error);
