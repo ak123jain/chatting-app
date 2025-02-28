@@ -7,7 +7,7 @@ export const verifyjwt = asynchandler(async(req, _ , next)=>{
 
    try {
      const token = req.cookies?.accessToken  || req.header("Authentication")?.replace("Bearer  ", "" )
- 
+    
      console.log("akash token is required " , token);
          
          if (!token) {

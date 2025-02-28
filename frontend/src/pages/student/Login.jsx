@@ -44,7 +44,7 @@
 // export default Login
 
 import axios from "axios";
-import React, { useState } from "react";
+import  { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -79,6 +79,10 @@ const Login = () => {
       });
 
       console.log("Login Successful:", response.data);
+      const { accessToken } = response.data.data;
+
+        // Store accessToken in localStorage
+        localStorage.setItem("accessToken", accessToken);
       alert("Login successful!");
       navigate("/dashboard");
     } catch (error) {

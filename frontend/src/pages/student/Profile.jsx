@@ -51,7 +51,7 @@
 
 
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const Profile = () => {
   const [data, setData] = useState(null);
@@ -59,9 +59,15 @@ const Profile = () => {
   useEffect(() => {
     const fetchedUser = async () => {
       try {
+
+        
+        const token = localStorage.getItem("accessToken"); // Assuming you store it in localStorage
+
         const response = await axios.get(`${import.meta.env.VITE_API_URL}/users/profile`, {
-          withCredentials: true,
-        });
+          headers: {
+              Authorization: `Bearer ${token}`,
+          },
+      });
         console.log("User profile fetched successfully:", response.data.data);
         alert(response.data.message);
         setData(response.data.data);
