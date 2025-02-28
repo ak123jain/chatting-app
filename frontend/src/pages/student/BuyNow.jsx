@@ -132,12 +132,12 @@ const BuyNow = () => {
       }
 
       const { orderId, amount } = data.data;
-
+      console.log(amount)
       await loadRazorpayScript();
 
       const options = {
         key:  "rzp_test_RY9m6Nigypx0B2", // Replace with your Razorpay Key ID
-        amount: amount * 100,
+        amount: 100,
         currency: 'INR',
         name: 'Acme Corp',
         description: 'Test Transaction',
