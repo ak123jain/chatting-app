@@ -63,8 +63,14 @@ const ViewCource = () => {
 
   useEffect(() => {
     const fetchedcource = async () => {
+
+      const token = localStorage.getItem("accessToken")
       try {
-        const response = await axios.get(`${import.meta.env.VITE_API_URL}/cources/containcource`);
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/cources/containcource`,{
+          headers: {
+            Authorization :   `Bearer ${token}`,
+        },
+        });
         console.log("Cource added successfully:", response.data.message);
         if (Array.isArray(response.data.message)) {
           setdata(response.data.message);

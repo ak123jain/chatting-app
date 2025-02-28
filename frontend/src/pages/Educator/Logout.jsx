@@ -40,10 +40,15 @@ const Logout = () => {
   useEffect(() => {
     const logout = async () => {
       try {
+        const token = localStorage.getItem("accessToken")
         const response = await axios.post(
           "http://localhost:8000/users/logout",
           {},
-          { withCredentials: true }
+          {
+            headers:{
+              Authorization :   `Bearer ${token}`,
+           }
+          }
         );
         console.log("Logout successful:", response.data.message);
         alert(response.data.message);
